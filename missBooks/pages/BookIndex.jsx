@@ -1,6 +1,7 @@
 const { useState, useEffect } = React;
 
 import { bookService } from "../services/book.service.js";
+import { BookList } from "../cmps/BookList.jsx";
 
 export function BookIndex() {
   const [books, setBooks] = useState([]);
@@ -15,18 +16,7 @@ export function BookIndex() {
 
   return (
     <section className="book-index">
-      <ul className="book-list">
-        {books &&
-          books.map((book) => (
-            <li key={book.id}>
-              <h3>{book.title}</h3>
-              <p>{book.description}</p>
-              <p>
-                Price: {book.listPrice.amount} {book.listPrice.currencyCode}
-              </p>
-            </li>
-          ))}
-      </ul>
+      <BookList books={books} />
     </section>
   );
 }
