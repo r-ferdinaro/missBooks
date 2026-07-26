@@ -1,5 +1,5 @@
 import { utilService } from "./util.service.js"
-import { storageService } from ".async-storage.service.js"
+import { storageService } from "./async-storage.service.js"
 
 const BOOK_KEY = 'bookDB'
 _createBooks()
@@ -58,10 +58,42 @@ function getDefaultFilter(filteBy = { title: '' }) {
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY)
     if (!books || !books.length) {
-        books = []
-        for (let i = 0; i < 3; i++) {
-            books.push(_createBook())
-        }
+        books = [
+            {
+                id: utilService.makeId(),
+                title: 'metus hendrerit',
+                description: 'placerat nisi sodales suscipit tellus tincidunt mauris elit sit luctus interdum ad dictum platea vehicula conubia fermentum habitasse congue suspendisse',
+                thumbnail: 'http://coding-academy.org/books-photos/20.jpg',
+                listPrice: {
+                    amount: 109,
+                    currencyCode: 'EUR',
+                    isOnSale: false
+                }
+            },
+            {
+                id: utilService.makeId(),
+                title: 'morbi',
+                description: 'aliquam pretium lorem laoreet etiam odio cubilia iaculis placerat aliquam tempor nisl auctor',
+                thumbnail: 'http://coding-academy.org/books-photos/14.jpg',
+                listPrice: {
+                    amount: 44,
+                    currencyCode: 'EUR',
+                    isOnSale: true
+                }
+            },
+            {
+                id: utilService.makeId(),
+                title: 'at viverra venenatis',
+                description: 'lorem molestie ut euismod ad quis mi ultricies nisl cursus suspendisse dui tempor sit suscipit metus etiam euismod tortor sagittis habitant',
+                thumbnail: 'http://coding-academy.org/books-photos/2.jpg',
+                listPrice: {
+                    amount: 108,
+                    currencyCode: 'ILS',
+                    isOnSale: false
+                }
+            },
+
+        ]
         utilService.saveToStorage(BOOK_KEY, books)
     }
 }
