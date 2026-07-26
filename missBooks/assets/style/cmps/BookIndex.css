@@ -1,0 +1,10 @@
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+}
+
+.book-list li {
+    padding: 1em;
+    background-color: var(--clr1bg);
+}
