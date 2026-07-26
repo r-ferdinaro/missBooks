@@ -1,3 +1,21 @@
+const { useState, useEffect } = React;
+
+import { bookService } from "../services/book.service.js";
+
 export function BookIndex() {
-  return <h1>Hi</h1>;
+  const [books, setBooks] = useState();
+
+  useEffect(() => {
+    loadBooks();
+  }, []);
+
+  function loadBooks() {
+    bookService.query().then((books) => setBooks(books));
+  }
+
+  return (
+    <section className="book-index">
+      <pre>{JSON.stringify(books, null, 2)}</pre>
+    </section>
+  );
 }
