@@ -57,45 +57,38 @@ function getDefaultFilter(filteBy = { title: '' }) {
 
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY)
-    if (!books || !books.length) {
-        books = [
-            {
+    if (books || books.length > 0) return 
+    
+    const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+    
+    for (let i = 0; i < 20; i++) {
+        const book = {
                 id: utilService.makeId(),
-                title: 'metus hendrerit',
-                description: 'placerat nisi sodales suscipit tellus tincidunt mauris elit sit luctus interdum ad dictum platea vehicula conubia fermentum habitasse congue suspendisse',
-                thumbnail: 'http://coding-academy.org/books-photos/20.jpg',
+            title: utilService.makeLorem(2),
+            subtitle: utilService.makeLorem(4),
+            authors: [
+                utilService.makeLorem(1)
+            ],
+            publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+            description: utilService.makeLorem(20),
+            pageCount: utilService.getRandomIntInclusive(20, 600),
+            categories: [
+                ctgs[
+                    utilService.getRandomIntInclusive(0, ctgs.length - 1)
+                ]
+            ],
+            thumbnail: `http://coding-academy.org/books-photos/${i+1}.jpg`,
+            language: "en",
                 listPrice: {
-                    amount: 109,
-                    currencyCode: 'EUR',
-                    isOnSale: false
-                }
-            },
-            {
-                id: utilService.makeId(),
-                title: 'morbi',
-                description: 'aliquam pretium lorem laoreet etiam odio cubilia iaculis placerat aliquam tempor nisl auctor',
-                thumbnail: 'http://coding-academy.org/books-photos/14.jpg',
-                listPrice: {
-                    amount: 44,
-                    currencyCode: 'EUR',
-                    isOnSale: true
-                }
-            },
-            {
-                id: utilService.makeId(),
-                title: 'at viverra venenatis',
-                description: 'lorem molestie ut euismod ad quis mi ultricies nisl cursus suspendisse dui tempor sit suscipit metus etiam euismod tortor sagittis habitant',
-                thumbnail: 'http://coding-academy.org/books-photos/2.jpg',
-                listPrice: {
-                    amount: 108,
-                    currencyCode: 'ILS',
-                    isOnSale: false
-                }
-            },
-
-        ]
-        utilService.saveToStorage(BOOK_KEY, books)
+                amount: utilService.getRandomIntInclusive(80, 500),
+                currencyCode: "EUR",
+                isOnSale: Math.random() > 0.7
+            }
+        }
+        
+        books.push(book)
     }
+        utilService.saveToStorage(BOOK_KEY, books)
 }
 
 function _createBook(title, listPrice) {
