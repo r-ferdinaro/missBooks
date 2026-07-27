@@ -51,8 +51,11 @@ function getEmptyBook(title='', listPrice = {}) {
     }
 }
 
-function getDefaultFilter(filteBy = { title: '' }) {
-    return { title: filterBy.title }
+function getDefaultFilter(filterBy) {
+    return {
+        text: '',
+        amount: 0
+    }
 }
 
 function _createBooks() {
