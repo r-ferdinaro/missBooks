@@ -16,13 +16,34 @@ export const bookService = {
 window.cs = bookService
 
 function query(filterBy = {}) {
+    const {amount, category, language, pageCount, publishedDate, text} = filterBy
+    
     return storageService.query(BOOK_KEY)
         .then( books => {
-            if (filterBy.title) {
-                const regExp = new RegExp(filterBy.title, 'i')
-                books = books.filter(book => regExp.test(book.title))
+            if (amount) {
+                books = books.filter(book => book.listPrice.amount >= amount)
             }
-
+            if (category) {
+                books = books.filter(book => book.categories.includes(category))
+            }
+            if (language) {
+                const regExp = new RegExp(language, 'i')
+                books = books.filter(book => regExp.test(book.language))
+            }
+            if (pageCount) {
+                books = books.filter(book => book.pageCount >= pageCount)
+            }
+            if (publishedDate) {
+                books = books.filter(book => book.publishedDate >= publishedDate)
+            }
+            if (text) {
+                const regExp = new RegExp(text, 'i')
+                books = books.filter( ({authors, description, title}) =>
+                        regExp.test(title) ||
+                        regExp.test(description) ||
+                        authors.some(author => regExp.test(author))
+                )
+            }
             return books
         })
 }
@@ -66,7 +87,7 @@ function _createBooks() {
     
     for (let i = 0; i < 20; i++) {
         const book = {
-                id: utilService.makeId(),
+            id: utilService.makeId(),
             title: utilService.makeLorem(2),
             subtitle: utilService.makeLorem(4),
             authors: [
@@ -82,7 +103,7 @@ function _createBooks() {
             ],
             thumbnail: `http://coding-academy.org/books-photos/${i+1}.jpg`,
             language: "en",
-                listPrice: {
+            listPrice: {
                 amount: utilService.getRandomIntInclusive(80, 500),
                 currencyCode: "EUR",
                 isOnSale: Math.random() > 0.7
@@ -91,7 +112,7 @@ function _createBooks() {
         
         books.push(book)
     }
-        utilService.saveToStorage(BOOK_KEY, books)
+    utilService.saveToStorage(BOOK_KEY, books)
 }
 
 function _createBook(title, listPrice) {
