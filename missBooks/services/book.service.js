@@ -72,7 +72,7 @@ function getEmptyBook(title='', listPrice = {}) {
     }
 }
 
-function getDefaultFilter(filterBy) {
+function getDefaultFilter() {
     return {
         text: '',
         amount: 0
@@ -80,8 +80,8 @@ function getDefaultFilter(filterBy) {
 }
 
 function _createBooks() {
-    let books = utilService.loadFromStorage(BOOK_KEY)
-    if (books || books.length > 0) return 
+    let books = utilService.loadFromStorage(BOOK_KEY) || []
+    if (books.length > 0) return
     
     const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
     
