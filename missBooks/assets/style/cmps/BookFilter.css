@@ -1,0 +1,80 @@
+.filter-by-container {
+    margin-block-end: 1.5em;
+
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    background-color: var(--clr1bg-light);
+}
+
+.filter-by-container fieldset {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1em;
+
+    border: 0;
+    padding: 0;
+}
+
+.filter-by-container legend {
+    padding-bottom: 1em;
+    
+    font-weight: bold;
+    text-align: center;
+    color: var(--clr1);
+}
+
+.filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.filter-field span {
+    font-weight: bold;
+    color: var(--gray3);
+}
+
+.filter-by-container input,
+.filter-by-container select {
+    border: 1px solid var(--clr1bg);
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: var(--gray1);
+    
+    color: var(--gray3);
+}
+
+.filter-by-container select {
+    appearance: none;
+    
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: calc(100% - 1.1em) center, calc(100% - 0.7em) center;
+    background-size: 0.4em 0.4em, 0.4em 0.4em;
+    background-repeat: no-repeat;
+
+    cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+    .filter-by-container {
+        background-color: var(--clr1);
+    }
+
+    .filter-by-container legend {
+        color: var(--clr1bg-light);
+    }
+
+    .filter-field span {
+        color: var(--clr1bg-light);
+    }
+
+    .filter-by-container input,
+    .filter-by-container select {
+        background-color: var(--gray3);
+        color: var(--gray1);
+    }
+}
