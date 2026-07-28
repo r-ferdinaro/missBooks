@@ -7,8 +7,20 @@ export function BookList({ books, onRemoveBook, onSetSelectedBook }) {
         books.map((book) => (
           <div key={book.id} className="book-item">
             <BookPreview book={book} />
-            <button onClick={() => onRemoveBook(book.id)}>Remove</button>
-            <button onClick={() => onSetSelectedBook(book)}>Details</button>
+            <div className="book-actions">
+              <button
+                className="btn-details"
+                onClick={() => onSetSelectedBook(book)}
+              >
+                Details
+              </button>
+              <button
+                className="btn-remove"
+                onClick={() => onRemoveBook(book.id)}
+              >
+                Remove
+              </button>
+            </div>
           </div>
         ))}
     </section>

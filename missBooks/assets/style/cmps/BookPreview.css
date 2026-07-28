@@ -1,0 +1,40 @@
+.book-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.book-preview-image {
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.book-preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.book-preview-title {
+    margin: 0;
+    
+    text-align: center;
+    color: var(--clr1);
+    overflow: hidden;
+}
+
+.book-preview-price {
+    text-align: center;
+    font-weight: bold;
+    color: var(--clr2);
+}
+
+@media (prefers-color-scheme: dark) {
+    .book-preview-title {
+        color: var(--clr1bg-light);
+    }
+
+    .book-preview-price {
+        color: var(--gray3);
+    }
+}

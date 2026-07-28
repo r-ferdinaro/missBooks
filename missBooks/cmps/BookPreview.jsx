@@ -1,12 +1,14 @@
 export function BookPreview({ book }) {
-  const { description, listPrice, title } = book;
+  const { thumbnail, title, listPrice } = book;
   return (
-    <div>
-      <img src={book.thumbnail} alt="book thumbnail" />
-      <p>{book.title}</p>
-      <p>
-        {book.listPrice.amount} {book.listPrice.currencyCode || ""}
+    <article className="book-preview">
+      <div className="book-preview-image">
+        <img src={thumbnail} alt={title} />
+      </div>
+      <h3 className="book-preview-title">{title}</h3>
+      <p className="book-preview-price">
+        {listPrice.amount} {listPrice.currencyCode || ""}
       </p>
-    </div>
+    </article>
   );
 }
