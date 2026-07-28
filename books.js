@@ -14,7 +14,7 @@ const books = [
     "categories": [
       "Computers",
       "Hack"
-    ],
+    ], 
     "thumbnail": "http://coding-academy.org/books-photos/20.jpg",
     "language": "en",
     "listPrice": {
