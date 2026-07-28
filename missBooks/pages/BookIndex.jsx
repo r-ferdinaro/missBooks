@@ -24,6 +24,11 @@ export function BookIndex() {
 
   return (
     <section className="book-index">
+      <BookList
+        books={books}
+        onRemoveBook={onRemoveBook}
+        onSetSelectedBook={setSelectedBook}
+      />
 
       <BookDetails
         selectedBook={selectedBook}
