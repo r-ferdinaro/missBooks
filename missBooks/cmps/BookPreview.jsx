@@ -1,11 +1,12 @@
 export function BookPreview({ book }) {
+  const { description, listPrice, title } = book;
   return (
-    <article>
-      <h3>{book.title}</h3>
-      <p>{book.description}</p>
+    <div>
+      <img src={book.thumbnail} alt="book thumbnail" />
+      <p>{book.title}</p>
       <p>
-        Price: {book.listPrice.amount} {book.listPrice.currencyCode}
+        {book.listPrice.amount} {book.listPrice.currencyCode || ""}
       </p>
-    </article>
+    </div>
   );
 }
