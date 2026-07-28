@@ -63,11 +63,13 @@ export function BookDetails({ selectedBook, onCloseDetails }) {
                   {`${selectedBook.listPrice.amount} ${getCurrency(selectedBook.listPrice.currencyCode)}`}
                 </span>
               </p>
-              {selectedBook.listPrice.isOnSale && <p>On Sale</p>}
+              {selectedBook.listPrice.isOnSale && (
+                <p className="on-sale">On Sale</p>
+              )}
             </div>
 
-            <div>
-              <p>Description</p>
+            <div className="description">
+              <h4>Description</h4>
               <p>{selectedBook.description}</p>
             </div>
           </section>
