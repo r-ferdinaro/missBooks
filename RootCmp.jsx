@@ -4,10 +4,9 @@ import { AppHeader } from "./cmps/AppHeader.jsx";
 import { Home } from "./pages/Home.jsx";
 import { About } from "./pages/About.jsx";
 import { BookIndex } from "./pages/BookIndex.jsx";
+import { BookDetails } from "./pages/BookDetails.jsx";
 
 export function RootCmp() {
-  // const [page, setPage] = useState("BookIndex");
-
   return (
     <Router>
       <section className="app main-layout">
@@ -18,6 +17,7 @@ export function RootCmp() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/books" element={<BookIndex />} />
+            <Route path="/books/:id" element={<BookDetails />} />
           </Routes>
         </main>
       </section>

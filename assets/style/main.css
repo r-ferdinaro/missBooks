@@ -13,5 +13,6 @@
 @import "cmps/BookFilter.css";
 @import "cmps/BookDetails.css";
 @import "cmps/Home.css";
+@import "cmps/Loader.css";
 @import "cmps/RootCmp.css";
 @import "cmps/UserMsg.css";

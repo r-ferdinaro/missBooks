@@ -2,11 +2,11 @@ const { useState, useEffect } = React;
 
 import { bookService } from "../services/book.service.js";
 import { BookFilter } from "../cmps/BookFilter.jsx";
-import { BookDetails } from "../cmps/BookDetails.jsx";
+import { BookDetails } from "./BookDetails.jsx";
 import { BookList } from "../cmps/BookList.jsx";
 
 export function BookIndex() {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState(null);
   const [allBooks, setAllBooks] = useState([]);
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter());
   const [selectedBook, setSelectedBook] = useState(null);
@@ -37,16 +37,7 @@ export function BookIndex() {
         books={allBooks}
       />
 
-      <BookList
-        books={books}
-        onRemoveBook={onRemoveBook}
-        onSetSelectedBook={setSelectedBook}
-      />
-
-      <BookDetails
-        selectedBook={selectedBook}
-        onCloseDetails={() => setSelectedBook(null)}
-      />
+      <BookList books={books} onRemoveBook={onRemoveBook} />
     </section>
   );
 }
