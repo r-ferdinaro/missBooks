@@ -3,6 +3,7 @@
 
 /* Base */
 @import "base/helpers.css";
+@import "base/forms.css";
 @import "base/layout.css";
 @import "base/reset.css";
 

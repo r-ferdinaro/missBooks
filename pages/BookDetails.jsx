@@ -56,42 +56,43 @@ export function BookDetails() {
 
   if (!book) return <Loader />;
   return (
-    <div>
-      <div className="book-details">
-        <section className="book-details-image">
-          <img src={book.thumbnail} alt="book thumbnail" />
-        </section>
+    <div className="book-details">
+      <section className="book-details-image">
+        <img src={book.thumbnail} alt="book thumbnail" />
+      </section>
 
-        <section className="book-details-data">
-          <div className="main-info">
-            <h2 className="title">{book.title}</h2>
-            <h3 className="subtitle">{book.subtitle}</h3>
-            <span className="author">{book.authors[0]}</span>
-          </div>
-          <div className="book-details-info">
-            <span className="publish-date">{`${book.publishedDate} - ${isVintage(book.publishedDate)}`}</span>
-            <span className="page-count">{`${book.pageCount} - ${bookDifficulty(book.pageCount)} reading`}</span>
-            <span className="categories">{book.categories.join(", ")}</span>
-            <span>{getLanguage(book.language)}</span>
-            <p>
-              Price:
-              <span className={getPriceColor(book.listPrice.amount)}>
-                {`${book.listPrice.amount} ${getCurrency(book.listPrice.currencyCode)}`}
-              </span>
-            </p>
-            {book.listPrice.isOnSale && <p className="on-sale">On Sale</p>}
-          </div>
-          <div className="description">
-            <h4>Description</h4>
-            <p>{book.description}</p>
-          </div>
-          <div className="options">
-            <Link to="/books">
-              <button>Back</button>
-            </Link>
-          </div>
-        </section>
-      </div>
+      <section className="book-details-data">
+        <div className="main-info">
+          <h2 className="title">{book.title}</h2>
+          <h3 className="subtitle">{book.subtitle}</h3>
+          <span className="author">{book.authors[0]}</span>
+        </div>
+        <div className="book-details-info">
+          <span className="publish-date">{`${book.publishedDate} - ${isVintage(book.publishedDate)}`}</span>
+          <span className="page-count">{`${book.pageCount} - ${bookDifficulty(book.pageCount)} reading`}</span>
+          <span className="categories">{book.categories.join(", ")}</span>
+          <span>{getLanguage(book.language)}</span>
+          <p>
+            Price:
+            <span className={getPriceColor(book.listPrice.amount)}>
+              {`${book.listPrice.amount} ${getCurrency(book.listPrice.currencyCode)}`}
+            </span>
+          </p>
+          {book.listPrice.isOnSale && <p className="on-sale">On Sale</p>}
+        </div>
+        <div className="description">
+          <h4>Description</h4>
+          <p>{book.description}</p>
+        </div>
+        <div className="options book-actions">
+          <Link to="/books">
+            <button className="btn-details">Back</button>
+          </Link>
+          <Link to={`/books/edit/${book.id}`}>
+            <button className="btn-remove">Edit</button>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

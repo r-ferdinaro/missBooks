@@ -1,5 +1,6 @@
-const { useRef, useState } = React;
-const { useNavigate } = ReactRouter;
+const { useRef, useState, useEffect } = React;
+const { useNavigate, useParams } = ReactRouter;
+const { Link } = ReactRouterDOM;
 
 import { Loader } from "../cmps/Loader.jsx";
 import { bookService } from "../services/book.service.js";
@@ -7,8 +8,16 @@ import { bookService } from "../services/book.service.js";
 const currYear = new Date().getFullYear();
 
 export function BookEdit() {
-  const [book, setBook] = useState(bookService.getEmptyBook());
+  const [book, setBook] = useState();
   const navigate = useNavigate();
+  const { id: bookId } = useParams();
+
+  console.log(bookId);
+
+  useEffect(() => {
+    if (!bookId) setBook(bookService.getEmptyBook());
+    else bookService.get(bookId).then(setBook).catch(console.log("wow"));
+  }, []);
 
   function handleChange({ target }) {
     let { value, type, name, checked } = target;
@@ -40,7 +49,7 @@ export function BookEdit() {
     <section className="book-edit-container">
       <form onSubmit={onSaveBook} className="book-edit">
         <fieldset>
-          <legend>{book._id ? "Edit book" : "Add book"}</legend>
+          <legend>{book.id ? "Edit book" : "Add book"}</legend>
 
           <label className="book-edit-field">
             <span>Title</span>
@@ -187,7 +196,12 @@ export function BookEdit() {
           </label>
         </fieldset>
 
-        <button>Save</button>
+        <div className="action-buttons">
+          <Link to="/books">
+            <button>Discard</button>
+          </Link>
+          <button>Save</button>
+        </div>
       </form>
     </section>
   );

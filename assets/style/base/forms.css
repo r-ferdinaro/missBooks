@@ -17,3 +17,10 @@ input:focus {
     background-color: var(--clr1bg);
     transition: background-color 1s;
 }
+
+.action-buttons {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    gap: 1em;
+}
