@@ -37,6 +37,17 @@ export function BookDetails() {
     else return "";
   }
 
+  function getLanguage(language) {
+    switch (language) {
+      case "il":
+        return "Hebrew";
+      case "en":
+        return "English";
+      case "es":
+        return "Spanish";
+    }
+  }
+
   function getPriceColor(amount) {
     if (amount < 20) return "cheap";
     else if (amount > 150) return "expensive";
@@ -61,7 +72,7 @@ export function BookDetails() {
             <span className="publish-date">{`${book.publishedDate} - ${isVintage(book.publishedDate)}`}</span>
             <span className="page-count">{`${book.pageCount} - ${bookDifficulty(book.pageCount)} reading`}</span>
             <span className="categories">{book.categories.join(", ")}</span>
-            <span>{book.language}</span>
+            <span>{getLanguage(book.language)}</span>
             <p>
               Price:
               <span className={getPriceColor(book.listPrice.amount)}>

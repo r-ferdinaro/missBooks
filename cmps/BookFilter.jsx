@@ -21,7 +21,7 @@ export function BookFilter({ filterBy, setFilterBy, books }) {
   function getLanguageOptions() {
     const languages = [...new Set(books.map((book) => book.language))];
     return [
-      <option key="" value="">
+      <option key="all-languages" value="">
         All languages
       </option>,
       ...languages.map((language) => (
@@ -35,7 +35,7 @@ export function BookFilter({ filterBy, setFilterBy, books }) {
   function getCategoryOptions() {
     const categories = [...new Set(books.flatMap((book) => book.categories))];
     return [
-      <option key="" value="">
+      <option key="all-categories" value="">
         All categories
       </option>,
       ...categories.map((category) => (

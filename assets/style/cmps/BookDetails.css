@@ -46,7 +46,8 @@ dialog::backdrop {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5em;
+
+    gap: .8em;
 }
 
 .book-details-info > span {

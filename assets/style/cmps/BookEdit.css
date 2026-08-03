@@ -1,0 +1,133 @@
+.book-edit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.book-edit {
+    width: min(700px, 100%);
+
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    background-color: var(--clr1bg-light);
+}
+
+.book-edit fieldset {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+
+    border: 0;
+    padding: 0;
+}
+
+.book-edit legend {
+    padding-bottom: 1em;
+
+    font-weight: bold;
+    text-align: center;
+    color: var(--clr1);
+}
+
+.book-edit-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+
+    font-size: 0.8em;
+}
+
+.book-edit-field span {
+    font-weight: bold;
+    color: var(--gray3);
+}
+
+.book-edit-field.checkbox-field {
+    flex-direction: row;
+    align-items: end;
+    justify-content: start;
+    gap: 0.5em;
+}
+
+.book-edit input,
+.book-edit select {
+    border: 1px solid var(--clr1bg);
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: var(--gray1);
+
+    color: var(--gray3);
+}
+
+.book-edit input[type="checkbox"] {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.book-edit select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: calc(100% - 1.1em) center, calc(100% - 0.7em) center;
+    background-size: 0.4em 0.4em, 0.4em 0.4em;
+    background-repeat: no-repeat;
+
+    cursor: pointer;
+}
+
+.book-edit button {
+    display: block;
+    margin: 1.5em auto 0;
+
+    border: 1px solid var(--clr1);
+    border-radius: 5px;
+    padding: 0.5em 0.8em;
+    background-color: var(--clr1bg);
+
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.book-edit button:hover {
+    background-color: var(--clr1);
+
+    color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    .book-edit {
+        background-color: var(--clr1);
+    }
+
+    .book-edit legend {
+        color: var(--clr1bg-light);
+    }
+
+    .book-edit-field span {
+        color: var(--clr1bg-light);
+    }
+
+    .book-edit input,
+    .book-edit select {
+        background-color: var(--gray3);
+        color: var(--gray1);
+    }
+
+    .book-edit button {
+        border-color: var(--clr1bg-light);
+        background-color: var(--clr1bg-light);
+
+        color: var(--gray3);
+    }
+
+    .book-edit button:hover {
+        background-color: var(--clr1bg);
+
+        color: var(--gray3);
+    }
+}

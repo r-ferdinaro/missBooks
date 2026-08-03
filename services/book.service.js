@@ -65,10 +65,23 @@ function save(book) {
     return storageService.post(BOOK_KEY, book)
 }
 
-function getEmptyBook(title='', listPrice = {}) {
+function getEmptyBook(listPrice = {}) {
+    const currentYear =new Date().getFullYear()
     return {
-        title,
-        listPrice
+        authors: [],
+        categories: ["Love"],
+        description: "",
+        language: "il",
+        listPrice: {
+            amount: 0,
+            currencyCode: "USD",
+            isOnSale: false
+        },
+        pageCount: 0,
+        publishedDate: currentYear,
+        subtitle: "",
+        thumbnail: "http://coding-academy.org/books-photos/20.jpg",
+        title: "",
     }
 }
 
