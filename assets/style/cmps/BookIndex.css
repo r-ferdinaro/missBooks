@@ -16,6 +16,8 @@
 .book-actions {
     display: flex;
     gap: 0.5em;
+
+    margin-top: auto;
 }
 
 .book-actions button {
