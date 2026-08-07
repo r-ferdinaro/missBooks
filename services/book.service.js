@@ -11,7 +11,9 @@ export const bookService = {
     save,
     getEmptyBook,
     getDefaultFilter,
-    addReview
+    getEmptyReview,
+    addReview,
+    removeReview
 }
 
 window.cs = bookService
@@ -94,7 +96,16 @@ function getDefaultFilter() {
     }
 }
 
-  function addReview(bookId, {fullName, rating, readAt}) {
+    function getEmptyReview() {
+        return {
+            fullName: '',
+            readAt: Date.now(),
+            rating: 1
+        }
+    }
+
+  function addReview(bookId, review) {
+    const {fullName, rating, readAt} = review
     const isValidTimestamp = Number.isInteger(readAt) && !isNaN(new Date(readAt))
     
     if (!bookId ||
@@ -103,13 +114,7 @@ function getDefaultFilter() {
         !isValidTimestamp
     ) throw new Error('Payload is invalid')
 
-    const review = {
-        id: utilService.makeId(),
-        fullName: fullName.trim(),
-        rating,
-        readAt
-    }
-
+    review.id = utilService.makeId()
     return get(bookId)
         .then(book => {
             if (!book.reviews) book.reviews = [review]
@@ -120,6 +125,18 @@ function getDefaultFilter() {
             console.error('Cannot add review', err)
             throw err
         })
+  }
+
+  function removeReview(bookId, reviewId) {
+    return get(bookId)
+    .then(book => {
+        book.reviews = book.reviews.filter(review => review.id !== reviewId)
+        return save(book)
+    })
+    .catch(err => {
+        console.log('Failed to remove review', err)
+        throw err
+    })
   }
 
 function _createBooks() {

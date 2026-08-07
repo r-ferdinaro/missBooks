@@ -4,8 +4,8 @@ const { Link } = ReactRouterDOM;
 
 import { bookService } from "../services/book.service.js";
 import { Loader } from "../cmps/Loader.jsx";
-import { showErrorMsg } from "../services/event-bus.service.js";
-import { AddReview } from "../cmps/AddReview.jsx";
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
+import { ReviewList } from "../cmps/ReviewList.jsx";
 
 export function BookDetails() {
   const [book, setBook] = useState();
@@ -59,6 +59,35 @@ export function BookDetails() {
     else return "";
   }
 
+  function onAddReview(review) {
+    return bookService
+      .addReview(bookId, review)
+      .then((updatedBook) => {
+        setBook(updatedBook);
+        showSuccessMsg("Review saved successfully");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        showErrorMsg("Failed to save review");
+      });
+  }
+
+  function onRemoveReview(reviewId) {
+    bookService
+      .removeReview(bookId, reviewId)
+      .then(() => {
+        setBook((prev) => ({
+          ...prev,
+          reviews: prev.reviews.filter((review) => review.id !== reviewId),
+        }));
+        showSuccessMsg("Review removed successfully");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        showErrorMsg("Failed removing review");
+      });
+  }
+
   if (!book) return <Loader />;
   return (
     <div className="book-area">
@@ -105,7 +134,11 @@ export function BookDetails() {
             <button className="btn-remove">Edit</button>
           </Link>
         </div>
-        <AddReview />
+        <ReviewList
+          reviews={book.reviews}
+          onAddReview={onAddReview}
+          onRemoveReview={onRemoveReview}
+        />
       </div>
     </div>
   );

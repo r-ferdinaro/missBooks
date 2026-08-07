@@ -13,7 +13,8 @@ dialog::backdrop {
 
 .book-area {
     display: grid;
-    gap: 1em;
+    grid-template-rows: max-content auto;
+
     height: 100%;
 }
 
@@ -85,10 +86,6 @@ dialog::backdrop {
     font-weight: bold;
 }
 
-.description {
-    margin-top: auto;
-}
-
 .description h4 {
     color: var(--clr1);
 }
@@ -109,9 +106,99 @@ dialog::backdrop {
     gap: 2em;
 }
 
-.review-section{
+.review-section {
     align-self: center;
     justify-self: center;
+
+    width: min(100%, 40em);
+    
+    border-radius: 10px;
+    padding: 1.5em;
+    background-color: var(--gray1);
+}
+
+.review-section h4 {
+    color: var(--clr1);
+}
+
+.review-list {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 0.5em;
+
+    margin: 0;
+    padding: 0;
+    
+    list-style: none;
+}
+
+.review-row-wrap {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+}
+
+.review-row {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: center;
+    gap: 0.6em 1em;
+
+    padding: 0.5em 0.8em;
+    border-radius: 6px;
+}
+
+.review-row-header {
+    color: var(--gray2);
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.review-preview,
+.add-review {
+    background-color: rgb(210, 210, 210);
+}
+
+.start-rating {
+    display: flex;
+}
+
+.start-rating button {
+    background-color: transparent;
+    padding: 0;
+}
+
+.start-rating button:hover {
+    background-color: transparent;
+}
+
+.start-rating .star {
+    position: relative;
+    display: inline-block;
+}
+
+.start-rating .star-on {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    color: yellow;
+}
+
+.start-rating .on .star-on {
+    opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+    .review-section {
+        background-color: var(--gray3);
+    }
+
+    .review-preview,
+    .add-review {
+        background-color: rgb(90, 90, 90);
+    }
 }
 
 @media (max-width: 600px) {
