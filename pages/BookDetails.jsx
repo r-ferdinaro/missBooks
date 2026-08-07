@@ -62,7 +62,11 @@ export function BookDetails() {
   return (
     <div className="book-details">
       <section className="book-details-image">
-        <img src={book.thumbnail} alt="book thumbnail" />
+        <img
+          src={book.thumbnail}
+          alt="book thumbnail"
+          onError={({ target }) => (target.src = "../assets/img/sample.jpg")}
+        />
       </section>
 
       <section className="book-details-data">

@@ -3,7 +3,13 @@ export function BookPreview({ book }) {
   return (
     <article className="book-preview">
       <div className="book-preview-image">
-        <img src={thumbnail} alt={title} />
+        <img
+          src={thumbnail}
+          alt={title}
+          onError={({ target }) => {
+            target.src = "../assets/img/sample.jpg";
+          }}
+        />
       </div>
       <h3 className="book-preview-title">{title}</h3>
       <p className="book-preview-price">
