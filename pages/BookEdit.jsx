@@ -4,6 +4,7 @@ const { Link } = ReactRouterDOM;
 
 import { Loader } from "../cmps/Loader.jsx";
 import { bookService } from "../services/book.service.js";
+import { showErrorMsg } from "../services/event-bus.service.js";
 
 const currYear = new Date().getFullYear();
 
@@ -12,11 +13,16 @@ export function BookEdit() {
   const navigate = useNavigate();
   const { id: bookId } = useParams();
 
-  console.log(bookId);
-
   useEffect(() => {
     if (!bookId) setBook(bookService.getEmptyBook());
-    else bookService.get(bookId).then(setBook).catch(console.log("wow"));
+    else
+      bookService
+        .get(bookId)
+        .then(setBook)
+        .catch((err) => {
+          showErrorMsg("Error loading book in ediror");
+          console.log(err);
+        });
   }, []);
 
   function handleChange({ target }) {
@@ -38,10 +44,14 @@ export function BookEdit() {
 
   function onSaveBook(ev) {
     ev.preventDefault();
+
     bookService
       .save(book)
       .then(() => navigate("/books"))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        showErrorMsg(`Error when saving book${bookId && bookId}`);
+        console.log(err);
+      });
   }
 
   if (!book) return <Loader />;

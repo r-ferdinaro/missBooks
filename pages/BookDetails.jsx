@@ -4,6 +4,7 @@ const { Link } = ReactRouterDOM;
 
 import { bookService } from "../services/book.service.js";
 import { Loader } from "../cmps/Loader.jsx";
+import { showErrorMsg } from "../services/event-bus.service.js";
 
 export function BookDetails() {
   const [book, setBook] = useState();
@@ -13,7 +14,10 @@ export function BookDetails() {
     bookService
       .get(bookId)
       .then(setBook)
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        showErrorMsg(`Error upon loading book ${bookId}`);
+        console.log(err);
+      });
   }, []);
 
   function bookDifficulty(pageCount) {

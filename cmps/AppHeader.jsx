@@ -1,5 +1,7 @@
 const { NavLink } = ReactRouterDOM;
 
+import { UserMsg } from "../assets/style/cmps/UserMsg.jsx";
+
 export function AppHeader({ page = "home", onSetPage }) {
   return (
     <header className="app-header full main-layout">
@@ -13,6 +15,7 @@ export function AppHeader({ page = "home", onSetPage }) {
           <NavLink to="/books">Books</NavLink>
         </nav>
       </section>
+      <UserMsg />
     </header>
   );
 }

@@ -19,7 +19,10 @@
 }
 
 .book-actions {
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
+    justify-items: center;
+
     gap: 0.5em;
 
     margin-top: auto;
