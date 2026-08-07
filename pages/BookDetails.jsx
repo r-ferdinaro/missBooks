@@ -1,4 +1,4 @@
-const { useParams } = ReactRouter;
+const { useNavigate, useParams } = ReactRouter;
 const { useState, useEffect } = React;
 const { Link } = ReactRouterDOM;
 
@@ -8,6 +8,7 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { ReviewList } from "../cmps/ReviewList.jsx";
 
 export function BookDetails() {
+  const navigate = useNavigate();
   const [book, setBook] = useState();
   const { id: bookId } = useParams();
 
@@ -16,10 +17,11 @@ export function BookDetails() {
       .get(bookId)
       .then(setBook)
       .catch((err) => {
+        navigate("/books");
         showErrorMsg(`Error upon loading book ${bookId}`);
         console.log(err);
       });
-  }, []);
+  }, [bookId]);
 
   function bookDifficulty(pageCount) {
     if (pageCount < 100) return "Light";
@@ -123,17 +125,26 @@ export function BookDetails() {
             <h4>Description</h4>
             <p>{book.description}</p>
           </div>
+          <div className="book-options">
+            <Link to="/books">
+              <button className="btn-details">Back</button>
+            </Link>
+
+            <Link to={`/books/${book.nextBookId}`}>
+              <button className="btn-details">Previous book</button>
+            </Link>
+
+            <Link to={`/books/${book.prevBookId}`}>
+              <button className="btn-details">Next book</button>
+            </Link>
+
+            <Link to={`/books/edit/${book.id}`}>
+              <button className="btn-remove">Edit</button>
+            </Link>
+          </div>
         </section>
       </div>
-      <div className="book-page-options">
-        <div className="options">
-          <Link to="/books">
-            <button className="btn-details">Back</button>
-          </Link>
-          <Link to={`/books/edit/${book.id}`}>
-            <button className="btn-remove">Edit</button>
-          </Link>
-        </div>
+      <div className="book-review-area">
         <ReviewList
           reviews={book.reviews}
           onAddReview={onAddReview}

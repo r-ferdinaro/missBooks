@@ -94,16 +94,21 @@ dialog::backdrop {
     color: var(--gray3);
 }
 
-.book-page-options {
+.book-review-area {
     display: grid;
-    grid-auto-flow: row;
-    grid-template-rows: max-content auto;
+    align-items: center;
 }
 
-.book-page-options .options {
+.book-options {
     display: flex;
     justify-content: center;
-    gap: 2em;
+    gap: 1em;
+
+    margin-top: auto;
+}
+
+.book-options :last-child {
+    margin-left: auto;
 }
 
 .review-section {
