@@ -207,7 +207,7 @@ export function BookEdit() {
         </fieldset>
 
         <div className="action-buttons">
-          <Link to="/books">
+          <Link to={bookId ? `/books/${bookId}` : "/books"}>
             <button>Discard</button>
           </Link>
           <button>Save</button>
