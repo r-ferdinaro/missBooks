@@ -1,8 +1,14 @@
+.app {
+    height: 98vh;
+    grid-template-rows: max-content auto;
+}
+
 .app-header {
     background-color: var(--clr1);
     margin-block-end: 1em;
 
     color: var(--clr2bg-light);
+    height: max-content;
 }
 
 .header-container {

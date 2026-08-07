@@ -11,6 +11,12 @@ dialog::backdrop {
     backdrop-filter: blur(2px);
 }
 
+.book-area {
+    display: grid;
+    gap: 1em;
+    height: 100%;
+}
+
 .book-details {
     display: flex;
     gap: 1.5em;
@@ -89,6 +95,23 @@ dialog::backdrop {
 
 .description p {
     color: var(--gray3);
+}
+
+.book-page-options {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: max-content auto;
+}
+
+.book-page-options .options {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+.review-section{
+    align-self: center;
+    justify-self: center;
 }
 
 @media (max-width: 600px) {

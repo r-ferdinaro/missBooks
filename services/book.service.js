@@ -11,6 +11,7 @@ export const bookService = {
     save,
     getEmptyBook,
     getDefaultFilter,
+    addReview
 }
 
 window.cs = bookService
@@ -82,6 +83,7 @@ function getEmptyBook(listPrice = {}) {
         subtitle: "",
         thumbnail: "http://coding-academy.org/books-photos/20.jpg",
         title: "",
+        reviews: []
     }
 }
 
@@ -91,6 +93,34 @@ function getDefaultFilter() {
         amount: 0
     }
 }
+
+  function addReview(bookId, {fullName, rating, readAt}) {
+    const isValidTimestamp = Number.isInteger(readAt) && !isNaN(new Date(readAt))
+    
+    if (!bookId ||
+        !fullName ||
+        !Number.isFinite(rating) ||
+        !isValidTimestamp
+    ) throw new Error('Payload is invalid')
+
+    const review = {
+        id: utilService.makeId(),
+        fullName: fullName.trim(),
+        rating,
+        readAt
+    }
+
+    return get(bookId)
+        .then(book => {
+            if (!book.reviews) book.reviews = [review]
+            else book.reviews.push(review)
+            return save(book)
+        })
+        .catch(err => {
+            console.error('Cannot add review', err)
+            throw err
+        })
+  }
 
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY) || []
@@ -120,7 +150,8 @@ function _createBooks() {
                 amount: utilService.getRandomIntInclusive(80, 500),
                 currencyCode: "EUR",
                 isOnSale: Math.random() > 0.7
-            }
+            },
+            reviews: []
         }
         
         books.push(book)
