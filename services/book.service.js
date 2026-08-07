@@ -13,7 +13,8 @@ export const bookService = {
     getDefaultFilter,
     getEmptyReview,
     addReview,
-    removeReview
+    removeReview,
+    getRandomPrice
 }
 
 window.cs = bookService
@@ -69,7 +70,7 @@ function save(book) {
 }
 
 function getEmptyBook(listPrice = {}) {
-    const currentYear =new Date().getFullYear()
+    const currentYear = new Date().getFullYear()
     return {
         authors: [],
         categories: ["Love"],
@@ -86,6 +87,16 @@ function getEmptyBook(listPrice = {}) {
         thumbnail: "http://coding-academy.org/books-photos/20.jpg",
         title: "",
         reviews: []
+    }
+}
+
+function getRandomPrice() {
+    const currencyCodes = ["USD", "ILS", "EUR"]
+
+    return {
+            amount: utilService.getRandomIntInclusive(1, 1000),
+            currencyCode: currencyCodes[utilService.getRandomIntInclusive(0, currencyCodes.length - 1)],
+            isOnSale: Math.random() < 0.5
     }
 }
 

@@ -10,7 +10,10 @@ export function BookList({ books, onRemoveBook }) {
         <React.Fragment>
           <div className="book-item add">
             <Link to="/books/edit">
-              <button className="btn-details">Add Book</button>
+              <button className="btn-details">Add book manually</button>
+            </Link>
+            <Link to="/books/add">
+              <button className="btn-details">Search & Add book</button>
             </Link>
           </div>
           {books.map((book) => (
