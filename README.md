@@ -2,14 +2,18 @@
 
 ## Overview
 
-A book catalog app.
-Browse and filter your books, view details on each one, add new books by searching Google Books, edit or delete them, and leave star-rated reviews.
+A book catalog app.  
+Browse and filter your books, view details on each one, add new books by searching Google Books, edit or delete them, and leave star-rated reviews.  
 
 ## Technical Overview
 
-React + React Router, no build step — libs load via plain `<script>` tags and JSX compiles in-browser with Babel (see [lib/](lib/)). Just open `index.html` or serve the folder statically.
+React + React Router, no build step — libs load via plain `<script>` tags and JSX compiles in-browser with Babel (see [lib/](lib/)).  
+Just open `index.html` or serve the folder statically.
 
-**Pages:** Home, About, Book Index (list + filter), Book Details, Book Add, Book Edit — routed with `HashRouter` in [RootCmp.jsx](RootCmp.jsx). Book data comes from the Google Books API ([services/googleBook-service.js](services/googleBook-service.js)).
+**Pages:** Home, About, Book Index (list + filter), Book Details, Book Add, Book Edit — routed with `HashRouter` in [RootCmp.jsx](RootCmp.jsx).  
+Book Add/Edit are nested routes under Book Index.  
+Book Index filters and the Book Add search box sync to the URL's query params, so filtered/searched state survives navigation and reload.  
+Book data comes from the Google Books API ([services/googleBook-service.js](services/googleBook-service.js)); search results are cached in local storage and treated as stale after 2 minutes.
 
 ## Setup
 
@@ -20,8 +24,11 @@ React + React Router, no build step — libs load via plain `<script>` tags and 
    ```
 3. Open `index.html` (or serve the folder with any static server).
 
-`config.js` is gitignored — never commit your real key. Without it, the app still works, just falls back to unauthenticated Google Books requests (lower rate limit).
+`config.js` is gitignored — never commit your real key.  
+Without it, the app still works, just falls back to unauthenticated Google Books requests (lower rate limit).  
 
 ## Deploy (GitHub Pages)
 
-No build step, no secrets needed. Pages serves the repo as-is; since `config.js` isn't committed, the deployed site runs keyless (unauthenticated Books API requests). Enable Pages on the `main` branch in repo Settings.
+No build step, no secrets needed.  
+Pages serves the repo as-is; since `config.js` isn't committed, the deployed site runs keyless (unauthenticated Books API requests).  
+Enable Pages on the `main` branch in repo Settings.
