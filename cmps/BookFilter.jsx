@@ -56,7 +56,7 @@ export function BookFilter({ filterBy, setFilterBy, books }) {
             type="text"
             name="text"
             onChange={changeFilter}
-            value={text}
+            value={text || ""}
             placeholder="Text filter"
             className="text-filter"
           />

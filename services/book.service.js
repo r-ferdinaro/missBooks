@@ -10,11 +10,11 @@ export const bookService = {
     remove,
     save,
     getEmptyBook,
-    getDefaultFilter,
     getEmptyReview,
     addReview,
     removeReview,
-    getRandomPrice
+    getRandomPrice,
+    getFilterFromSearchParams,
 }
 
 window.cs = bookService
@@ -64,6 +64,23 @@ function remove(bookId) {
     return storageService.remove(BOOK_KEY, bookId)
 }
 
+function getFilterFromSearchParams(searchParams) {
+    const defaultFilter = { 
+        text: '',
+        amount: 0,
+        publishedDate: 0,
+        pageCount: 0,
+        category: ''
+
+    }
+    const filterBy = {}
+
+    for (const field in defaultFilter) {
+        filterBy[field] = searchParams.get(field) || defaultFilter[field]
+    }
+    return filterBy
+}
+
 function save(book) {
     if (book.id) return storageService.put(BOOK_KEY, book)
     return storageService.post(BOOK_KEY, book)
@@ -97,13 +114,6 @@ function getRandomPrice() {
             amount: utilService.getRandomIntInclusive(1, 1000),
             currencyCode: currencyCodes[utilService.getRandomIntInclusive(0, currencyCodes.length - 1)],
             isOnSale: Math.random() < 0.5
-    }
-}
-
-function getDefaultFilter() {
-    return {
-        text: '',
-        amount: 0
     }
 }
 

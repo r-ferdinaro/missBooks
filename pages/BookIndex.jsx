@@ -1,4 +1,5 @@
 const { useState, useEffect } = React;
+const { useSearchParams } = ReactRouterDOM;
 
 import { bookService } from "../services/book.service.js";
 import { BookFilter } from "../cmps/BookFilter.jsx";
@@ -9,10 +10,21 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 export function BookIndex() {
   const [books, setBooks] = useState(null);
   const [allBooks, setAllBooks] = useState([]);
-  const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter());
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filterBy, setFilterBy] = useState(
+    bookService.getFilterFromSearchParams(searchParams),
+  );
   const [selectedBook, setSelectedBook] = useState(null);
 
   useEffect(() => {
+    const params = Object.fromEntries(
+      Object.entries(filterBy).filter(
+        ([_, value]) => ![null, "", 0].includes(value),
+      ),
+    );
+
+    setSearchParams(params);
     loadBooks();
   }, [filterBy]);
 
