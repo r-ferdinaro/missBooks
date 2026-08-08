@@ -9,10 +9,10 @@ export function BookList({ books, onRemoveBook }) {
       {books && (
         <React.Fragment>
           <div className="book-item add">
-            <Link to="books/edit">
+            <Link to="edit">
               <button className="btn-details">Add book manually</button>
             </Link>
-            <Link to="books/add">
+            <Link to="add">
               <button className="btn-details">Search & Add book</button>
             </Link>
           </div>
