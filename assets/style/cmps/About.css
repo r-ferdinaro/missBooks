@@ -1,0 +1,16 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+
+    height: 80vh;
+
+    text-align: center;
+}
+
+.about nav {
+    display: flex;
+    gap: .5em;
+}

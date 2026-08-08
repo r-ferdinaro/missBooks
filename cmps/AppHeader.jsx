@@ -10,9 +10,9 @@ export function AppHeader({ page = "home", onSetPage }) {
         <nav>
           <NavLink to="/">Home</NavLink>
           <span> | </span>
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="about">About</NavLink>
           <span> | </span>
-          <NavLink to="/books">Books</NavLink>
+          <NavLink to="books">Books</NavLink>
         </nav>
       </section>
       <UserMsg />

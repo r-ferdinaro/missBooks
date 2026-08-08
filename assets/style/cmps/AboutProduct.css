@@ -1,0 +1,24 @@
+.about-product h2 {
+    color: var(--clr1);
+}
+
+.about-product ul {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    list-style: none;
+    padding: 0;
+}
+
+.about-product li {
+    padding: .3em .8em;
+    border-radius: 2px;
+    background-color: var(--clr1bg-light);
+    color: var(--gray3);
+}
+
+@media (prefers-color-scheme: dark) {
+    .about-product h2 {
+        color: var(--clr1bg-light);
+    }
+}

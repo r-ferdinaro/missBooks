@@ -8,6 +8,9 @@
 @import "base/reset.css";
 
 /* Components */
+@import "cmps/About.css";
+@import "cmps/AboutProduct.css";
+@import "cmps/AboutTeam.css";
 @import "cmps/AppHeader.css";
 @import "cmps/BookAdd.css";
 @import "cmps/BookIndex.css";
